@@ -5,6 +5,36 @@ proportional-derivative image-centering control. The original face and person
 scripts had nearly identical inference and flight code; this repository
 combines them behind a `--target` option.
 
+## Project video
+
+[Watch the Tello tracking project showcase](https://drive.google.com/file/d/1tz2XzvRAzNlpEgNxBHpcv9nIH4OkFTgG/view?usp=sharing)
+
+The project demonstrates a complete visual feedback loop: the drone camera
+provides frames, YOLOv5 locates a face or person, the controller measures the
+target's horizontal and vertical image-centering error, and optional RC
+commands adjust the drone's movement. Preview mode is the safe default; flight
+commands require the explicit `--fly` option.
+
+### Showcase highlights
+
+- One shared YOLOv5 detector for face and person targets.
+- A `416 x 416` detection input with a default confidence threshold of `0.40`.
+- PD control for target centring, plus bounding-box area bands for
+  forward/backward motion.
+- A neutral-command fallback when no target is detected.
+- CSV run logs and plots for target error, detection state and command
+  behaviour.
+- Preserved historical face-model plots with approximately 0.99 mAP@0.50 and
+  0.87 mAP@0.50:0.95; the corresponding weights and training dataset are not
+  included.
+
+## Tracking operation
+
+<p align="center">
+  <img src="assets/person-tracking-demo.jpg" alt="Tello camera-view person tracking with the YOLOv5 detection box" width="640">
+  <br><em>Camera-view tracking demo: YOLOv5 detects a person and draws a bounding box.</em>
+</p>
+
 The YOLOv5 dependency is a Git submodule pinned to upstream commit
 [`1156a323`](https://github.com/ultralytics/yolov5/commit/1156a323f8fc221d5c1a36c700e72e129419d187).
 Its source and AGPL-3.0 license remain in the submodule. This repository does

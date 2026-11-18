@@ -22,3 +22,6 @@ trllo-track-face.wmv
 .idea/
 .DS_Store
 Thumbs.db
+
+/brag-output
+*.pdf

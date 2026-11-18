@@ -2,7 +2,6 @@ from pathlib import Path
 import sys
 from typing import List, Optional, Tuple
 
-import cv2
 import numpy as np
 import torch
 
